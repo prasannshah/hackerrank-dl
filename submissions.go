@@ -42,6 +42,7 @@ type Submission struct {
 	Language       string  `json:"language"`
 	Score          float64 `json:"score"`
 	HackerUsername string  `json:"hacker_username"`
+	DuringContest bool `json:"in_contest_bounds"`
 }
 
 type Submissions struct {
@@ -76,6 +77,9 @@ func filterSubmissions(submissions *Submissions) SubmissionMap {
 
 	for _, s := range submissions.Models {
 		if s.HackerUsername == "[deleted]" {
+			continue
+		}
+		if s.DuringContest == false {
 			continue
 		}
 

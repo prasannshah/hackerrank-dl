@@ -30,6 +30,8 @@ import (
 	"path/filepath"
 	"sync"
 	"time"
+	"encoding/json"
+	"fmt"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -107,6 +109,18 @@ func exec(cfg *Config) {
 		}
 	}()
 
+	for q, submissionMap := range subs {
+		log.Infof("%s", q)
+		var scores = make(map[string]float64)
+		for _, submission := range submissionMap {
+			scores[submission.HackerUsername] = submission.Score
+		}
+		b, err := json.MarshalIndent(scores, "", "  ")
+		if err != nil {
+    	fmt.Println("error:", err)
+		}
+		fmt.Print(string(b))
+	}
 	for q, submissionMap := range subs {
 		log.Infof("preparing download %d submissions for %s", len(submissionMap), q)
 		for _, submission := range submissionMap {

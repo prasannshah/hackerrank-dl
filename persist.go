@@ -45,7 +45,7 @@ func CreateDownloadDir(path string) error {
 
 func SaveDownload(config *Config, question string, data *SubmissionData) error {
 	// create dir
-	dirPath := filepath.Join(config.OutDir, question, data.Language)
+	dirPath := filepath.Join(config.OutDir, question)
 	filePath := filepath.Join(dirPath, fmt.Sprintf("%s.%s", data.HackerUsername, GetExtension(data.Language)))
 	err := CreateDownloadDir(dirPath)
 	if err != nil {

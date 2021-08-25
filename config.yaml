@@ -1,0 +1,12 @@
+# slug name of the contest
+contest:
+# browser cookies for HackerRank as semicolon seperated string
+cookies:
+# output directory
+output: results
+# limit 5 parallel download threads
+parallelDownloads: 5
+# wait time between downloads in seconds
+waitTime: 7
+# burst per wait time
+rate: 10
